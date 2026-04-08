@@ -1,0 +1,66 @@
+# Decap CMS Configuration for Massaie Services
+# Docs: https://decapcms.org/docs/
+
+backend:
+  name: github
+  repo: YOUR_GITHUB_USERNAME/massaie-services   # ← Replace with your GitHub username/repo
+  branch: main
+  base_url: https://api.netlify.com              # Netlify acts as OAuth proxy (free)
+  auth_endpoint: auth
+
+# Where uploaded images are stored
+media_folder: public/images/uploads
+public_folder: /images/uploads
+
+# Article collection
+collections:
+  - name: articles
+    label: Articles
+    label_singular: Article
+    folder: public/content/articles
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    preview_path: /articles/{{slug}}
+    summary: "{{title}} — {{date}}"
+    sortable_fields: [date, title]
+    fields:
+      - label: Title
+        name: title
+        widget: string
+        hint: The full article title shown in the browser tab and on the article page.
+
+      - label: Publish Date
+        name: date
+        widget: datetime
+        format: "YYYY-MM-DD"
+        date_format: "YYYY-MM-DD"
+        time_format: false
+        hint: Controls article order (newest first).
+
+      - label: Short Description
+        name: description
+        widget: text
+        hint: 1-2 sentences. Shown on the articles listing card and in Google search results.
+
+      - label: Author
+        name: author
+        widget: string
+        default: "Massaie Services Team"
+
+      - label: Estimated Read Time (minutes)
+        name: readTime
+        widget: number
+        default: 5
+        required: false
+
+      - label: Featured Image
+        name: image
+        widget: image
+        required: false
+        hint: Optional. Shown as the article card thumbnail.
+
+      - label: Body
+        name: body
+        widget: markdown
+        hint: Write your article here. Use Heading 2 (##) for section titles.

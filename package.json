@@ -1,0 +1,16 @@
+{
+  "name": "massaie-services",
+  "version": "1.0.0",
+  "description": "Massaie Services - World-Class Concierge Services",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 5173",
+    "prebuild": "node scripts/generate-manifest.js",
+    "build": "vite build",
+    "preview": "vite preview --port 4173",
+    "manifest": "node scripts/generate-manifest.js"
+  },
+  "devDependencies": {
+    "vite": "^5.4.0"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "Massaie Dev Server (Python)",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["scripts/dev-server.py", "5173"],
+      "port": 5173
+    },
+    {
+      "name": "Massaie Dev Server (Vite)",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "port": 5173
+    },
+    {
+      "name": "Massaie Preview (Vite build)",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "preview"],
+      "port": 4173
+    }
+  ]
+}

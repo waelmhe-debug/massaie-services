@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:massaieservices.com)",
+      "Bash(npm install:*)",
+      "Bash(export PATH=$PATH:/usr/local/bin:/opt/homebrew/bin:/opt/homebrew/opt/node/bin)",
+      "Read(//Applications/Cursor.app/Contents/Resources/app/node_modules/.bin/**)",
+      "Read(//usr/**)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(xargs kill:*)"
+    ]
+  }
+}
