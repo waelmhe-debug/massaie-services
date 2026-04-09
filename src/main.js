@@ -255,7 +255,7 @@ function initReveal() {
 }
 
 // ── Contact form (2-step) ───────────────────────────────────────
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID'
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/maqlzzpk'
 
 // Per-service follow-up question definitions
 const SERVICE_QUESTIONS = {
