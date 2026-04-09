@@ -410,8 +410,8 @@ function buildStep2Form(selectedServices, clientName) {
 
   container.innerHTML = `
     <form class="step2-form" id="step2Form">
-      <h3>Tell Us More</h3>
-      <p>Optional details to help us prepare your quote. Takes about 2 minutes.</p>
+      <h3>Message sent — one more step</h3>
+      <p>To prepare your quote, we just need a bit more information about the services you selected.</p>
       <input type="hidden" name="_subject" value="Follow-up details from ${clientName}" />
       ${sections}
       <div style="margin-top:28px; display:flex; gap:12px; flex-wrap:wrap;">
@@ -504,24 +504,9 @@ form.addEventListener('submit', async e => {
   btn.style.borderColor = '#16a34a'
   form.reset()
 
-  // Show step 2 if services were selected
   const clientName = `${data.firstName} ${data.lastName}`
   if (selectedServices.length) {
-    const step2 = document.getElementById('contactStep2')
-    step2.innerHTML = `
-      <div class="step2-invite">
-        <h3>Would you like to give us more details?</h3>
-        <p>We can prepare a more accurate quote if you answer a few short questions about the services you selected.</p>
-        <div class="step2-invite-actions">
-          <button class="btn btn--primary" id="yesStep2">Yes, add details</button>
-          <button class="btn btn--ghost" id="noStep2">No thanks</button>
-        </div>
-      </div>
-    `
-    document.getElementById('yesStep2').addEventListener('click', () => buildStep2Form(selectedServices, clientName))
-    document.getElementById('noStep2').addEventListener('click', () => {
-      step2.innerHTML = `<div class="step2-submitted"><h3>All Set</h3><p>We received your message and will be in touch shortly.</p></div>`
-    })
+    buildStep2Form(selectedServices, clientName)
   }
 
   setTimeout(() => {
