@@ -255,8 +255,10 @@ function initReveal() {
 }
 
 // ── Contact form ────────────────────────────────────────────────
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID'
+
 const form = document.getElementById('contactForm')
-form.addEventListener('submit', e => {
+form.addEventListener('submit', async e => {
   e.preventDefault()
   const btn = form.querySelector('button[type="submit"]')
   const original = btn.textContent
@@ -272,18 +274,37 @@ form.addEventListener('submit', e => {
   }
   btn.textContent = 'Sending…'
   btn.disabled = true
-  setTimeout(() => {
-    btn.textContent = 'Message Sent!'
-    btn.style.background = '#16a34a'
-    btn.style.borderColor = '#16a34a'
-    form.reset()
+  try {
+    const res = await fetch(FORMSPREE_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: new FormData(form)
+    })
+    if (res.ok) {
+      btn.textContent = 'Message Sent!'
+      btn.style.background = '#16a34a'
+      btn.style.borderColor = '#16a34a'
+      form.reset()
+      setTimeout(() => {
+        btn.textContent = original
+        btn.style.background = ''
+        btn.style.borderColor = ''
+        btn.disabled = false
+      }, 3500)
+    } else {
+      throw new Error('Server error')
+    }
+  } catch {
+    btn.textContent = 'Failed — please email us directly'
+    btn.style.background = '#ef4444'
+    btn.style.borderColor = '#ef4444'
     setTimeout(() => {
       btn.textContent = original
       btn.style.background = ''
       btn.style.borderColor = ''
       btn.disabled = false
-    }, 3500)
-  }, 1200)
+    }, 4000)
+  }
 })
 
 // ── Active nav highlight ────────────────────────────────────────
