@@ -36,7 +36,7 @@ Premium transportation service is not simply about getting from point A to point
 Your arrival and departure transfers are coordinated with flight tracking to ensure punctuality regardless of delays. Vehicles are clean, professionally maintained, and driven by vetted, background-checked drivers.
 
 ### Daily Medical Transport
-If you have daily appointments at Mayo Clinic or other medical facilities, your schedule is coordinated to include:
+If you have daily appointments at medical facilities, your schedule is coordinated to include:
 
 - On-time pickup from your accommodation
 - Waiting during appointments as needed
