@@ -20,13 +20,12 @@ class SPAHandler(http.server.SimpleHTTPRequestHandler):
         # Strip query string for file lookup
         path = self.path.split('?')[0].split('#')[0]
 
-        # Vite maps public/ to root — rewrite /content/* and /admin/* to /public/*
-        if path.startswith('/content') or path.startswith('/admin') or path.startswith('/images'):
-            self.path = '/public' + self.path
+        # Static assets (js, css, fonts, images, json, md, etc.) — serve normally
+        if '.' in os.path.basename(path):
             return super().do_GET()
 
-        # Static assets (js, css, fonts, etc.) — serve normally
-        if '.' in os.path.basename(path):
+        # Known static directories — serve directly
+        if path.startswith(('/content', '/admin', '/images', '/src', '/assets')):
             return super().do_GET()
 
         # Everything else: serve index.html (SPA fallback)

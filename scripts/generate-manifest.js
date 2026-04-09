@@ -9,8 +9,8 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
-const articlesDir = path.join(__dirname, '../public/content/articles')
-const outputFile = path.join(__dirname, '../public/content/articles-manifest.json')
+const articlesDir = path.join(__dirname, '../content/articles')
+const outputFile = path.join(__dirname, '../content/articles-manifest.json')
 
 function parseFrontmatter(raw) {
   const match = raw.match(/^---\n([\s\S]*?)\n---/)

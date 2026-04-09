@@ -3,8 +3,111 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Massaie Services — Over a decade of VIP/VVIP concierge, medical tourism, and luxury transportation in Rochester, Minnesota." />
-  <title>Massaie Services | World-Class Concierge</title>
+
+  <!-- Primary SEO -->
+  <title>Massaie Services | VIP Concierge &amp; Medical Tourism — Rochester, Minnesota</title>
+  <meta name="description" content="Rochester Minnesota's premier VIP concierge service for international medical travelers. Airport transfers, luxury accommodation, 24/7 support, and full medical liaison — serving patients and families at Rochester's world-class hospitals." />
+  <meta name="keywords" content="concierge services Rochester Minnesota, medical tourism Rochester MN, international patient services Rochester, VIP concierge Rochester, medical travel Rochester Minnesota, patient concierge Minnesota, luxury services Rochester MN, VVIP concierge Rochester" />
+  <link rel="canonical" href="https://massaieservices.com/" />
+
+  <!-- Open Graph (Facebook, LinkedIn, WhatsApp) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://massaieservices.com/" />
+  <meta property="og:title" content="Massaie Services | VIP Concierge &amp; Medical Tourism — Rochester, MN" />
+  <meta property="og:description" content="Over a decade of serving international patients and VIP clients arriving in Rochester, Minnesota. We handle everything — accommodation, transport, medical liaison, and daily support." />
+  <meta property="og:image" content="https://massaieservices.com/images/og-cover.jpg" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:site_name" content="Massaie Services" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Massaie Services | VIP Concierge — Rochester, Minnesota" />
+  <meta name="twitter:description" content="Luxury concierge and medical tourism services for international patients and VIP guests visiting Rochester, Minnesota." />
+  <meta name="twitter:image" content="https://massaieservices.com/images/og-cover.jpg" />
+
+  <!-- LocalBusiness Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Massaie Services",
+    "description": "Premium VIP concierge, medical tourism support, and luxury transportation services for international patients and guests visiting Rochester, Minnesota.",
+    "url": "https://massaieservices.com",
+    "telephone": "+15072022501",
+    "email": "info@massaieservices.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "11 1st Ave SW",
+      "addressLocality": "Rochester",
+      "addressRegion": "MN",
+      "postalCode": "55902",
+      "addressCountry": "US"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 44.0234,
+      "longitude": -92.4635
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+      "opens": "00:00",
+      "closes": "23:59"
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "Rochester",
+      "addressRegion": "MN",
+      "addressCountry": "US"
+    },
+    "serviceType": ["VIP Concierge", "Medical Tourism Support", "Luxury Transportation", "Airport Transfers", "Accommodation Coordination"],
+    "priceRange": "$$$$",
+    "sameAs": []
+  }
+  </script>
+
+  <!-- FAQ Structured Data (boosts search visibility for long-tail queries) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What concierge services are available for international patients visiting Rochester, Minnesota?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Massaie Services provides airport VIP transfers, luxury accommodation booking, daily medical transport, 24/7 personal support, medical appointment liaison, cultural and dietary assistance, and full logistics coordination for international patients arriving in Rochester, MN."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I arrange a concierge service before arriving in Rochester for medical treatment?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We recommend contacting Massaie Services at least 4–6 weeks before your arrival date. Our team will coordinate every detail — from pre-arrival accommodation booking to airport pickup and ongoing daily support throughout your stay."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Massaie Services support families accompanying patients in Rochester?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. We provide full family support including larger accommodation options, cultural and dietary assistance, leisure transport, local orientation, and 24/7 availability — so the entire family feels comfortable during what can be a stressful time."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What languages does Massaie Services support?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Our multilingual, culturally sensitive staff can assist clients from across the Middle East, Europe, and beyond. We specialize in bridging cultural and language gaps for international guests visiting Rochester, Minnesota."
+        }
+      }
+    ]
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -16,27 +119,27 @@
   <!-- Navigation -->
   <nav class="nav" id="nav">
     <div class="nav__inner">
-      <a href="#" class="nav__logo">
+      <a href="/" class="nav__logo" data-spa>
         <span class="nav__logo-icon">M</span>
         <span class="nav__logo-text">Massaie<em>Services</em></span>
       </a>
       <ul class="nav__links">
-        <li><a href="#services" class="main-nav-link">Services</a></li>
-        <li><a href="#process" class="main-nav-link">Process</a></li>
-        <li><a href="#about" class="main-nav-link">About</a></li>
+        <li><a href="/#services" class="main-nav-link" data-spa>Services</a></li>
+        <li><a href="/#process" class="main-nav-link" data-spa>Process</a></li>
+        <li><a href="/#about" class="main-nav-link" data-spa>About</a></li>
         <li><a href="/articles" class="main-nav-link" data-spa>Articles</a></li>
-        <li><a href="#contact" class="nav__cta main-nav-link">Get Started</a></li>
+        <li><a href="/#contact" class="nav__cta main-nav-link" data-spa>Get Started</a></li>
       </ul>
       <button class="nav__burger" id="burger" aria-label="Toggle menu">
         <span></span><span></span><span></span>
       </button>
     </div>
     <div class="nav__mobile" id="mobileMenu">
-      <a href="#services" class="main-nav-link">Services</a>
-      <a href="#process" class="main-nav-link">Process</a>
-      <a href="#about" class="main-nav-link">About</a>
+      <a href="/#services" class="main-nav-link" data-spa>Services</a>
+      <a href="/#process" class="main-nav-link" data-spa>Process</a>
+      <a href="/#about" class="main-nav-link" data-spa>About</a>
       <a href="/articles" data-spa>Articles</a>
-      <a href="#contact">Get Started</a>
+      <a href="/#contact" data-spa>Get Started</a>
     </div>
   </nav>
 
@@ -397,7 +500,7 @@
   <footer class="footer">
     <div class="container footer__inner">
       <div class="footer__brand">
-        <a href="#" class="nav__logo">
+        <a href="/" class="nav__logo" data-spa>
           <span class="nav__logo-icon">M</span>
           <span class="nav__logo-text">Massaie<em>Services</em></span>
         </a>
@@ -405,17 +508,17 @@
       </div>
       <div class="footer__links">
         <h5>Services</h5>
-        <a href="#services">Accommodation</a>
-        <a href="#services">Transportation</a>
-        <a href="#services">Concierge</a>
-        <a href="#services">Medical Tourism</a>
-        <a href="#services">Logistics</a>
+        <a href="/#services" data-spa>Accommodation</a>
+        <a href="/#services" data-spa>Transportation</a>
+        <a href="/#services" data-spa>Concierge</a>
+        <a href="/#services" data-spa>Medical Tourism</a>
+        <a href="/#services" data-spa>Logistics</a>
       </div>
       <div class="footer__links">
         <h5>Company</h5>
-        <a href="#about">About Us</a>
-        <a href="#process">Our Process</a>
-        <a href="#contact">Contact</a>
+        <a href="/#about" data-spa>About Us</a>
+        <a href="/#process" data-spa>Our Process</a>
+        <a href="/#contact" data-spa>Contact</a>
       </div>
       <div class="footer__contact">
         <h5>Contact</h5>
