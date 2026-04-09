@@ -254,8 +254,208 @@ function initReveal() {
   })
 }
 
-// ── Contact form ────────────────────────────────────────────────
+// ── Contact form (2-step) ───────────────────────────────────────
 const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID'
+
+// Per-service follow-up question definitions
+const SERVICE_QUESTIONS = {
+  'Transportation & Airport': {
+    label: 'Transportation & Airport Services',
+    hasSubTypes: true,
+    subTypes: [
+      {
+        label: 'Airport Pickup / Drop-off',
+        fields: [
+          { label: 'Airport', name: 'trans_airport', type: 'select', options: ['RST — Rochester International', 'Signature FBO Rochester (RST)', 'MSP — Minneapolis-Saint Paul', 'Signature FBO Minneapolis (MSP)'] },
+          { label: 'Service Type', name: 'trans_type', type: 'select', options: ['Pickup', 'Drop-off', 'Meet & Assist'] },
+          { label: 'No. of Passengers', name: 'trans_passengers', type: 'number' },
+          { label: 'No. of Bags', name: 'trans_bags', type: 'number' },
+          { label: 'Vehicle Preference', name: 'trans_vehicle', type: 'select', options: ['Sedan', 'SUV', 'Van', 'Wheelchair Accessible'] },
+          { label: 'Date & Time', name: 'trans_datetime', type: 'datetime-local' },
+        ]
+      },
+      {
+        label: 'Daily Service (10 hrs/day)',
+        fields: [
+          { label: 'Number of Days', name: 'daily_days', type: 'number' },
+          { label: 'Vehicle Preference', name: 'daily_vehicle', type: 'select', options: ['Sedan', 'SUV', 'Van', 'Wheelchair Accessible'] },
+          { label: 'Start Date', name: 'daily_start', type: 'date' },
+        ]
+      },
+      {
+        label: 'Hourly Service (min. 2 hrs)',
+        fields: [
+          { label: 'Number of Hours', name: 'hourly_hrs', type: 'number' },
+          { label: 'Vehicle Preference', name: 'hourly_vehicle', type: 'select', options: ['Sedan', 'SUV', 'Van', 'Wheelchair Accessible'] },
+          { label: 'Start Date & Time', name: 'hourly_datetime', type: 'datetime-local' },
+        ]
+      },
+      {
+        label: 'Daily Hospital / Clinic Rides',
+        fields: [
+          { label: 'Pickup Date & Time', name: 'hosp_datetime', type: 'datetime-local' },
+          { label: 'Pickup Address', name: 'hosp_from', type: 'text', placeholder: 'Hotel name or address' },
+          { label: 'Drop-off Address', name: 'hosp_to', type: 'text', placeholder: 'Clinic or facility address' },
+          { label: 'Vehicle Preference', name: 'hosp_vehicle', type: 'select', options: ['Sedan', 'SUV', 'Van', 'Wheelchair Accessible'] },
+        ]
+      },
+    ]
+  },
+  'Lodging & Move-In Support': {
+    label: 'Lodging & Move-In Support',
+    fields: [
+      { label: 'Arrival Date', name: 'lodge_arrival', type: 'date' },
+      { label: 'Duration of Stay', name: 'lodge_duration', type: 'select', options: ['1–3 days', '4–7 days', '1–2 weeks', '3–4 weeks', '1–3 months', '3+ months'] },
+      { label: 'Number of Guests', name: 'lodge_guests', type: 'number' },
+      { label: 'Budget Range', name: 'lodge_budget', type: 'select', options: ['Economy ($100–150/night)', 'Standard ($150–250/night)', 'Luxury ($250–500/night)', 'Presidential ($500+/night)'] },
+      { label: 'Special Requirements', name: 'lodge_notes', type: 'textarea', placeholder: 'Accessibility needs, floor preferences, facilities nearby…' },
+    ]
+  },
+  'Daily Home-care Support': {
+    label: 'Daily / Weekly Home-care Support',
+    fields: [
+      { label: 'Support Needed', name: 'care_type', type: 'checkgroup', options: ['Companion visits', 'Light housekeeping', 'Grocery & pharmacy runs', 'Laundry coordination'] },
+      { label: 'Days Per Week', name: 'care_days', type: 'select', options: ['1–2 days/week', '3–4 days/week', 'Daily', 'As needed'] },
+      { label: 'Duration of Stay', name: 'care_duration', type: 'select', options: ['Less than 1 week', '1–2 weeks', '3–4 weeks', '1–3 months', '3+ months'] },
+    ]
+  },
+  'Meals & Dietary Support': {
+    label: 'Meals & Dietary Support',
+    fields: [
+      { label: 'Dietary Requirements', name: 'meal_diet', type: 'checkgroup', options: ['Halal', 'Kosher', 'Vegetarian', 'Vegan', 'Gluten-free', 'Medical diet'] },
+      { label: 'Number of People', name: 'meal_people', type: 'number' },
+      { label: 'Meals Needed', name: 'meal_which', type: 'checkgroup', options: ['Breakfast', 'Lunch', 'Dinner'] },
+      { label: 'Allergies or Specific Foods', name: 'meal_notes', type: 'textarea', placeholder: 'Describe allergies, cultural preferences, or specific foods…' },
+    ]
+  },
+  'Family, Child & Pet Support': {
+    label: 'Family, Child & Pet Support',
+    fields: [
+      { label: 'Support Needed', name: 'family_type', type: 'checkgroup', options: ['Childcare coordination', 'Child activity planning', 'Pet boarding', 'Pet walking'] },
+      { label: 'Number of Children', name: 'family_children', type: 'number' },
+      { label: 'Ages of Children', name: 'family_ages', type: 'text', placeholder: 'e.g. 3, 7, 12' },
+      { label: 'Pet Details', name: 'family_pet', type: 'text', placeholder: 'Type and breed, e.g. Golden Retriever' },
+    ]
+  },
+  'City Guide & Leisure': {
+    label: 'City Guide & Leisure Planning',
+    fields: [
+      { label: 'Interests', name: 'leisure_interests', type: 'checkgroup', options: ['Dining & restaurants', 'Shopping', 'Nature & parks', 'Cultural venues', 'Prayer facilities', 'Sports & recreation'] },
+      { label: 'Number of People', name: 'leisure_people', type: 'number' },
+      { label: 'Additional Preferences', name: 'leisure_notes', type: 'textarea', placeholder: 'Mobility considerations, languages, specific interests…' },
+    ]
+  },
+  'Paperwork & Travel Coordination': {
+    label: 'Paperwork & Travel Coordination',
+    fields: [
+      { label: 'Assistance Needed', name: 'paper_type', type: 'checkgroup', options: ['Organizing medical papers', 'Printing & scanning', 'Airline date changes', 'Hotel date changes', 'Appointment scheduling', 'Daily schedule reminders'] },
+      { label: 'Additional Notes', name: 'paper_notes', type: 'textarea', placeholder: 'Describe what you need help coordinating…' },
+    ]
+  },
+  'International White-Glove': {
+    label: 'International White-Glove Services',
+    fields: [
+      { label: 'Country of Origin', name: 'intl_country', type: 'text', placeholder: 'e.g. Saudi Arabia, UAE, Kuwait…' },
+      { label: 'Services Needed', name: 'intl_type', type: 'checkgroup', options: ['Pre-arrival WhatsApp/email planning', 'Airport meet-and-greet', 'SIM card & phone setup', 'Currency exchange assistance', 'US banking guidance', 'Language support', 'Cultural & religious support'] },
+      { label: 'Languages Spoken', name: 'intl_lang', type: 'text', placeholder: 'e.g. Arabic, English, French…' },
+      { label: 'Religious / Cultural Requirements', name: 'intl_religion', type: 'text', placeholder: 'e.g. Halal food, prayer times, dress code…' },
+    ]
+  },
+}
+
+function buildField(field) {
+  const wrap = `<div class="form-group">`
+  const label = `<label>${field.label}</label>`
+  let input = ''
+  if (field.type === 'select') {
+    input = `<select name="${field.name}"><option value="">Select…</option>${field.options.map(o => `<option>${o}</option>`).join('')}</select>`
+  } else if (field.type === 'textarea') {
+    input = `<textarea name="${field.name}" rows="3" placeholder="${field.placeholder || ''}"></textarea>`
+  } else if (field.type === 'checkgroup') {
+    input = `<div class="checkgroup">${field.options.map(o => `<label class="checkgroup-item"><input type="checkbox" name="${field.name}[]" value="${o}"><span>${o}</span></label>`).join('')}</div>`
+  } else {
+    input = `<input type="${field.type}" name="${field.name}" placeholder="${field.placeholder || ''}" />`
+  }
+  return wrap + label + input + `</div>`
+}
+
+function buildStep2Form(selectedServices, clientName) {
+  const container = document.getElementById('contactStep2')
+
+  const sections = selectedServices.map(svcName => {
+    const svc = SERVICE_QUESTIONS[svcName]
+    if (!svc) return ''
+
+    if (svc.hasSubTypes) {
+      const tabs = svc.subTypes.map((st, i) =>
+        `<button type="button" class="step2-subtype-btn${i === 0 ? ' active' : ''}" data-subtype="${i}">${st.label}</button>`
+      ).join('')
+
+      const panels = svc.subTypes.map((st, i) =>
+        `<div class="step2-subfields${i === 0 ? ' active' : ''}" data-panel="${i}">${st.fields.map(buildField).join('')}</div>`
+      ).join('')
+
+      return `<div class="step2-section">
+        <div class="step2-section-title">${svc.label}</div>
+        <div class="step2-subtypes">${tabs}</div>
+        ${panels}
+      </div>`
+    }
+
+    return `<div class="step2-section">
+      <div class="step2-section-title">${svc.label}</div>
+      ${svc.fields.map(buildField).join('')}
+    </div>`
+  }).join('')
+
+  container.innerHTML = `
+    <form class="step2-form" id="step2Form">
+      <h3>Tell Us More</h3>
+      <p>Optional details to help us prepare your quote. Takes about 2 minutes.</p>
+      <input type="hidden" name="_subject" value="Follow-up details from ${clientName}" />
+      ${sections}
+      <div style="margin-top:28px; display:flex; gap:12px; flex-wrap:wrap;">
+        <button type="submit" class="btn btn--primary">Submit Details</button>
+        <button type="button" class="btn btn--ghost" id="skipStep2">Skip for Now</button>
+      </div>
+      <p class="form-note" style="margin-top:14px">This is optional — we'll follow up by email with any missing information.</p>
+    </form>
+  `
+
+  // Sub-type tab switching (for Transportation)
+  container.querySelectorAll('.step2-subtype-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const section = btn.closest('.step2-section')
+      const idx = btn.dataset.subtype
+      section.querySelectorAll('.step2-subtype-btn').forEach(b => b.classList.remove('active'))
+      section.querySelectorAll('.step2-subfields').forEach(p => p.classList.remove('active'))
+      btn.classList.add('active')
+      section.querySelector(`.step2-subfields[data-panel="${idx}"]`).classList.add('active')
+    })
+  })
+
+  document.getElementById('skipStep2').addEventListener('click', () => {
+    container.innerHTML = `<div class="step2-submitted"><h3>All Set</h3><p>We received your message and will be in touch shortly.</p></div>`
+  })
+
+  document.getElementById('step2Form').addEventListener('submit', async e => {
+    e.preventDefault()
+    const btn = e.target.querySelector('[type="submit"]')
+    btn.textContent = 'Sending…'
+    btn.disabled = true
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(e.target)
+      })
+      if (!res.ok) throw new Error()
+    } catch { /* fail silently — main form already sent */ }
+    container.innerHTML = `<div class="step2-submitted"><h3>Details Received</h3><p>Thank you — we'll prepare your quote and be in touch soon.</p></div>`
+  })
+
+  container.scrollIntoView({ behavior: 'smooth', block: 'start' })
+}
 
 const form = document.getElementById('contactForm')
 form.addEventListener('submit', async e => {
@@ -272,28 +472,20 @@ form.addEventListener('submit', async e => {
     })
     return
   }
+
+  // Collect selected services
+  const selectedServices = [...form.querySelectorAll('input[name="services"]:checked')].map(cb => cb.value)
+
   btn.textContent = 'Sending…'
   btn.disabled = true
+
   try {
     const res = await fetch(FORMSPREE_ENDPOINT, {
       method: 'POST',
       headers: { 'Accept': 'application/json' },
       body: new FormData(form)
     })
-    if (res.ok) {
-      btn.textContent = 'Message Sent!'
-      btn.style.background = '#16a34a'
-      btn.style.borderColor = '#16a34a'
-      form.reset()
-      setTimeout(() => {
-        btn.textContent = original
-        btn.style.background = ''
-        btn.style.borderColor = ''
-        btn.disabled = false
-      }, 3500)
-    } else {
-      throw new Error('Server error')
-    }
+    if (!res.ok) throw new Error('Server error')
   } catch {
     btn.textContent = 'Failed — please email us directly'
     btn.style.background = '#ef4444'
@@ -304,7 +496,40 @@ form.addEventListener('submit', async e => {
       btn.style.borderColor = ''
       btn.disabled = false
     }, 4000)
+    return
   }
+
+  btn.textContent = 'Sent!'
+  btn.style.background = '#16a34a'
+  btn.style.borderColor = '#16a34a'
+  form.reset()
+
+  // Show step 2 if services were selected
+  const clientName = `${data.firstName} ${data.lastName}`
+  if (selectedServices.length) {
+    const step2 = document.getElementById('contactStep2')
+    step2.innerHTML = `
+      <div class="step2-invite">
+        <h3>Would you like to give us more details?</h3>
+        <p>We can prepare a more accurate quote if you answer a few short questions about the services you selected.</p>
+        <div class="step2-invite-actions">
+          <button class="btn btn--primary" id="yesStep2">Yes, add details</button>
+          <button class="btn btn--ghost" id="noStep2">No thanks</button>
+        </div>
+      </div>
+    `
+    document.getElementById('yesStep2').addEventListener('click', () => buildStep2Form(selectedServices, clientName))
+    document.getElementById('noStep2').addEventListener('click', () => {
+      step2.innerHTML = `<div class="step2-submitted"><h3>All Set</h3><p>We received your message and will be in touch shortly.</p></div>`
+    })
+  }
+
+  setTimeout(() => {
+    btn.textContent = original
+    btn.style.background = ''
+    btn.style.borderColor = ''
+    btn.disabled = false
+  }, 3500)
 })
 
 // ── Active nav highlight ────────────────────────────────────────

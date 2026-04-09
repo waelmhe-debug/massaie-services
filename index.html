@@ -431,25 +431,26 @@
           <input type="tel" id="phone" name="phone" placeholder="+1 (000) 000-0000" />
         </div>
         <div class="form-group">
-          <label for="service">Service Interested In</label>
-          <select id="service" name="service">
-            <option value="">Select a service…</option>
-            <option>Accommodation Coordination</option>
-            <option>Premium Transportation</option>
-            <option>Concierge Excellence</option>
-            <option>Lifestyle Assistance</option>
-            <option>Medical Tourism Support</option>
-            <option>Logistics Management</option>
-            <option>Full Concierge Package</option>
-          </select>
+          <label>Services <span class="form-label-hint">select all that apply</span></label>
+          <div class="service-checks">
+            <label class="service-check"><input type="checkbox" name="services" value="Transportation &amp; Airport"><span>Transportation &amp; Airport</span></label>
+            <label class="service-check"><input type="checkbox" name="services" value="Lodging &amp; Move-In Support"><span>Lodging &amp; Move-In</span></label>
+            <label class="service-check"><input type="checkbox" name="services" value="Daily Home-care Support"><span>Home-care Support</span></label>
+            <label class="service-check"><input type="checkbox" name="services" value="Meals &amp; Dietary Support"><span>Meals &amp; Dietary</span></label>
+            <label class="service-check"><input type="checkbox" name="services" value="Family, Child &amp; Pet Support"><span>Family / Child / Pet</span></label>
+            <label class="service-check"><input type="checkbox" name="services" value="City Guide &amp; Leisure"><span>City Guide &amp; Leisure</span></label>
+            <label class="service-check"><input type="checkbox" name="services" value="Paperwork &amp; Travel Coordination"><span>Paperwork &amp; Travel</span></label>
+            <label class="service-check"><input type="checkbox" name="services" value="International White-Glove"><span>International White-Glove</span></label>
+          </div>
         </div>
         <div class="form-group">
           <label for="message">Message</label>
-          <textarea id="message" name="message" rows="4" placeholder="Tell us about your needs, travel dates, and any special requirements…"></textarea>
+          <textarea id="message" name="message" rows="3" placeholder="Tell us about your needs, travel dates, and any special requirements…"></textarea>
         </div>
         <button type="submit" class="btn btn--primary btn--full">Send Message</button>
         <p class="form-note">We typically respond within 24 hours.</p>
       </form>
+      <div id="contactStep2" class="contact__step2"></div>
     </div>
   </section>
 
