@@ -586,14 +586,20 @@ ul { list-style: none; }
 
 .process__step-num {
   font-family: var(--font-serif);
-  font-size: 2.2rem;
+  font-size: 1.05rem;
   font-weight: 700;
   color: var(--gold);
   line-height: 1;
-  min-width: 56px;
-  text-align: right;
   flex-shrink: 0;
-  padding-top: 2px;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid var(--gold);
+  border-radius: 50%;
+  letter-spacing: 0.02em;
+  background: rgba(201,168,76,.08);
 }
 
 .process__step-content {
@@ -1131,41 +1137,95 @@ ul { list-style: none; }
 
 /* ── Why Choose Massaie ─────────────────────────────────────── */
 .why-choose {
-  padding: 80px 0;
+  padding: 100px 0;
   background: var(--navy);
+  position: relative;
+  overflow: hidden;
 }
 
+.why-choose::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.why-choose .section-eyebrow { text-align: center; }
 .why-choose .section-title { color: var(--white); text-align: center; }
-.why-choose .section-header { margin-bottom: 0; }
+.why-choose .section-desc { color: rgba(255,255,255,.6); text-align: center; max-width: 480px; margin: 0 auto; }
+.why-choose .section-header { margin-bottom: 64px; }
 
 .why-choose__grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 48px;
-  margin-top: 52px;
+  gap: 2px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
 }
 
 .why-choose__item {
-  text-align: center;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 40px 32px;
+  background: rgba(10,22,40,.5);
+  transition: background var(--transition);
+  position: relative;
+}
+
+.why-choose__item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 20%;
+  bottom: 20%;
+  width: 1px;
+  background: rgba(255,255,255,.08);
+}
+
+.why-choose__item:hover {
+  background: rgba(201,168,76,.05);
+}
+
+.why-choose__icon-wrap {
+  width: 52px;
+  height: 52px;
+  display: flex;
   align-items: center;
-  gap: 14px;
+  justify-content: center;
+  border: 1px solid rgba(201,168,76,.3);
+  border-radius: var(--radius);
+  color: var(--gold);
+  flex-shrink: 0;
+  transition: var(--transition);
 }
 
-.why-choose__icon {
-  font-size: 2.4rem;
-  line-height: 1;
-  display: block;
-  filter: drop-shadow(0 0 8px rgba(201,168,76,.3));
+.why-choose__icon-wrap svg {
+  width: 26px;
+  height: 26px;
 }
 
-.why-choose__item p {
-  font-size: 0.92rem;
+.why-choose__item:hover .why-choose__icon-wrap {
+  background: rgba(201,168,76,.1);
+  border-color: var(--gold);
+}
+
+.why-choose__text h4 {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
   font-weight: 600;
-  color: rgba(255,255,255,.85);
-  letter-spacing: 0.02em;
-  line-height: 1.4;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.why-choose__text p {
+  font-size: 0.875rem;
+  color: rgba(255,255,255,.55);
+  line-height: 1.65;
   margin: 0;
 }
 
@@ -1182,7 +1242,13 @@ ul { list-style: none; }
 @media (max-width: 768px) {
   .why-choose__grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 36px;
+    gap: 2px;
+  }
+  .why-choose__item {
+    padding: 28px 20px;
+  }
+  .why-choose__item::after {
+    display: none;
   }
 }
 
