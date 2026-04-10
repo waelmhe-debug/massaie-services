@@ -539,3 +539,7 @@ window.route = route
 console.log('[massaie] window.route set:', typeof window.route)
 
 route(window.location.pathname, false)
+
+// Auto-update copyright year
+const yearEl = document.getElementById('copyright-year')
+if (yearEl) yearEl.textContent = new Date().getFullYear()
