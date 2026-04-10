@@ -917,6 +917,15 @@ ul { list-style: none; }
   margin-top: 12px;
 }
 
+.service-card__photo {
+  width: calc(100% + 48px);
+  margin: -28px -24px 20px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  display: block;
+}
+
 .form-label-hint {
   font-weight: 400;
   font-size: 11px;
