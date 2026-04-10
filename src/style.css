@@ -1129,6 +1129,63 @@ ul { list-style: none; }
 .step2-submitted h3 { font-family: var(--font-serif); font-size: 1.3rem; color: var(--navy); margin-bottom: 8px; }
 .step2-submitted p { font-size: 0.9rem; color: var(--gray-600); }
 
+/* ── Why Choose Massaie ─────────────────────────────────────── */
+.why-choose {
+  padding: 80px 0;
+  background: var(--navy);
+}
+
+.why-choose .section-title { color: var(--white); text-align: center; }
+.why-choose .section-header { margin-bottom: 0; }
+
+.why-choose__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 48px;
+  margin-top: 52px;
+}
+
+.why-choose__item {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.why-choose__icon {
+  font-size: 2.4rem;
+  line-height: 1;
+  display: block;
+  filter: drop-shadow(0 0 8px rgba(201,168,76,.3));
+}
+
+.why-choose__item p {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: rgba(255,255,255,.85);
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* About staff photo */
+.about__staff-photo {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: var(--radius-lg);
+  margin-bottom: 16px;
+}
+
+@media (max-width: 768px) {
+  .why-choose__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 36px;
+  }
+}
+
 /* ── Footer ──────────────────────────────────────────────────── */
 .footer {
   background: var(--navy);
