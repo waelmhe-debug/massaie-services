@@ -1215,6 +1215,37 @@ ul { list-style: none; }
   }
 }
 
+/* ── Floating Contact Button ─────────────────────────────────── */
+.floating-contact {
+  position: fixed;
+  bottom: 32px;
+  right: 28px;
+  z-index: 900;
+  background: var(--gold);
+  color: var(--navy);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 13px 22px;
+  border-radius: 50px;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(0,0,0,.25), 0 1px 4px rgba(0,0,0,.12);
+  transition: opacity 0.2s ease, transform 0.2s ease, background 0.2s ease;
+}
+
+.floating-contact:hover {
+  background: var(--gold-lt);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(0,0,0,.28);
+}
+
+.floating-contact--hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+}
+
 /* ── Footer ──────────────────────────────────────────────────── */
 .footer {
   background: var(--navy);
