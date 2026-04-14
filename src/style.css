@@ -1996,6 +1996,25 @@ ul { list-style: none; }
     font-weight: 600;
   }
 
+  /* Mobile-only row labels */
+  .lp-ctable tbody .lp-ctable__shuttle-cell .lp-x,
+  .lp-ctable tbody .lp-ctable__massaie-cell .lp-check {
+    display: none;
+  }
+
+  .lp-ctable tbody .lp-ctable__shuttle-cell::before {
+    content: '✗  Shuttle: ';
+    color: #dc2626;
+    font-weight: 600;
+    opacity: 0.5;
+  }
+
+  .lp-ctable tbody .lp-ctable__massaie-cell::before {
+    content: '✓  Us: ';
+    color: #16a34a;
+    font-weight: 700;
+  }
+
   /* CTA footer */
   .lp-ctable tfoot tr {
     background: transparent;
