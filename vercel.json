@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/msp-to-rochester",
+      "destination": "/msp-to-rochester.html"
+    },
+    {
       "source": "/articles/:path*",
       "destination": "/index.html"
     },
