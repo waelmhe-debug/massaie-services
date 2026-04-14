@@ -1858,6 +1858,62 @@ ul { list-style: none; }
 
 .lp-compare__table tr:nth-child(even) td { background: var(--gray-100); }
 
+.lp-why-private {
+  padding: 80px 0;
+  background: var(--white);
+}
+
+.lp-why-private__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+
+.lp-why-private__item {
+  background: var(--ivory);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+}
+
+.lp-why-private__item--full {
+  grid-column: 1 / -1;
+}
+
+.lp-why-private__icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(201,168,76,.4);
+  border-radius: var(--radius-sm);
+  color: var(--gold);
+  background: rgba(201,168,76,.06);
+  margin-bottom: 16px;
+}
+
+.lp-why-private__icon svg { width: 22px; height: 22px; }
+
+.lp-why-private__item h3 {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+
+.lp-why-private__item p {
+  font-size: 0.9rem;
+  color: var(--gray-600);
+  line-height: 1.65;
+}
+
+@media (max-width: 768px) {
+  .lp-why-private__grid { grid-template-columns: 1fr; }
+  .lp-why-private__item--full { grid-column: auto; }
+}
+
 .lp-medical {
   padding: 80px 0;
   background: var(--navy);
