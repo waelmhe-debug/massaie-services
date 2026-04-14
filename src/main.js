@@ -477,6 +477,14 @@ form.addEventListener('submit', async e => {
   btn.style.borderColor = '#16a34a'
   form.reset()
 
+  // GA4 event via GTM dataLayer
+  window.dataLayer = window.dataLayer || []
+  window.dataLayer.push({
+    event: 'form_submit',
+    form_id: 'contactForm',
+    form_name: 'Homepage Contact Form'
+  })
+
   const clientName = `${data.firstName} ${data.lastName}`
   if (selectedServices.length) {
     buildStep2Form(selectedServices, clientName)

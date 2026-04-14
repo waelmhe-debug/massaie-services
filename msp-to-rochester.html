@@ -323,6 +323,14 @@
           if (res.ok) {
             lpForm.style.display = 'none'
             lpSuccess.style.display = 'block'
+
+            // GA4 event via GTM dataLayer
+            window.dataLayer = window.dataLayer || []
+            window.dataLayer.push({
+              event: 'form_submit',
+              form_id: 'mspLandingForm',
+              form_name: 'MSP Landing Page Form'
+            })
           } else {
             btn.disabled = false
             btn.textContent = 'Send Request'
