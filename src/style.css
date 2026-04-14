@@ -777,13 +777,13 @@ ul { list-style: none; }
 
 .about__why-item {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 14px;
 }
 
 .about__why-icon {
-  width: 48px;
-  height: 48px;
+  width: 44px;
+  height: 44px;
   flex-shrink: 0;
   display: flex;
   align-items: center;
@@ -792,18 +792,28 @@ ul { list-style: none; }
   border-radius: var(--radius-sm);
   color: var(--gold);
   background: rgba(201,168,76,.06);
+  margin-top: 2px;
 }
 
 .about__why-icon svg {
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
 }
 
-.about__why-item span {
-  font-size: 0.9rem;
+.about__why-text strong {
+  display: block;
+  font-size: 0.88rem;
   font-weight: 600;
   color: var(--navy);
   line-height: 1.35;
+  margin-bottom: 3px;
+}
+
+.about__why-text p {
+  font-size: 0.8rem;
+  color: var(--gray-600);
+  line-height: 1.55;
+  margin: 0;
 }
 
 /* ── Contact ─────────────────────────────────────────────────── */
@@ -1671,4 +1681,370 @@ ul { list-style: none; }
   .hero__stat-divider { width: 40px; height: 1px; }
   .btn { padding: 12px 22px; font-size: 13px; }
   .section-title { font-size: 1.8rem; }
+}
+
+/* ── Landing Page (MSP to Rochester) ────────────────────────── */
+.lp-body {
+  font-family: var(--font-sans);
+  background: var(--white);
+  color: var(--gray-800);
+}
+
+.lp-nav {
+  background: var(--navy);
+  padding: 16px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.lp-nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.lp-hero {
+  background: var(--navy);
+  background-image: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,.08) 0%, transparent 70%);
+  padding: 80px 0 100px;
+  text-align: center;
+  color: var(--white);
+}
+
+.lp-hero__eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+
+.lp-hero__headline {
+  font-family: var(--font-serif);
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 600;
+  line-height: 1.18;
+  color: var(--white);
+  margin-bottom: 20px;
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.lp-hero__sub {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,.7);
+  max-width: 580px;
+  margin: 0 auto 36px;
+  line-height: 1.65;
+}
+
+.lp-hero__cta {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.lp-hero__phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255,255,255,.8);
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 13px 20px;
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 50px;
+  transition: var(--transition);
+}
+
+.lp-hero__phone:hover {
+  border-color: rgba(255,255,255,.5);
+  color: var(--white);
+}
+
+.lp-cards {
+  padding: 80px 0;
+  background: var(--ivory);
+}
+
+.lp-cards__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.lp-card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  padding: 36px 28px;
+}
+
+.lp-card__icon {
+  width: 52px;
+  height: 52px;
+  border: 1px solid rgba(201,168,76,.4);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+  margin-bottom: 20px;
+  background: rgba(201,168,76,.05);
+}
+
+.lp-card__icon svg { width: 26px; height: 26px; }
+
+.lp-card h3 {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 10px;
+}
+
+.lp-card p {
+  font-size: 0.9rem;
+  color: var(--gray-600);
+  line-height: 1.65;
+}
+
+.lp-compare {
+  padding: 80px 0;
+  background: var(--white);
+}
+
+.lp-compare__table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 40px;
+  font-size: 0.9rem;
+}
+
+.lp-compare__table th {
+  background: var(--navy);
+  color: var(--white);
+  padding: 14px 20px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.lp-compare__table th:first-child { border-radius: var(--radius-sm) 0 0 0; }
+.lp-compare__table th:last-child { border-radius: 0 var(--radius-sm) 0 0; background: var(--gold); color: var(--navy); }
+
+.lp-compare__table td {
+  padding: 13px 20px;
+  border-bottom: 1px solid var(--gray-200);
+  vertical-align: top;
+  color: var(--gray-600);
+}
+
+.lp-compare__table td:first-child {
+  font-weight: 600;
+  color: var(--navy);
+  width: 28%;
+}
+
+.lp-compare__table td:last-child {
+  color: var(--navy);
+  font-weight: 500;
+}
+
+.lp-compare__table tr:nth-child(even) td { background: var(--gray-100); }
+
+.lp-medical {
+  padding: 80px 0;
+  background: var(--navy);
+  background-image: radial-gradient(ellipse 60% 60% at 100% 50%, rgba(201,168,76,.06) 0%, transparent 70%);
+}
+
+.lp-medical__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.lp-medical h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+
+.lp-medical p {
+  color: rgba(255,255,255,.65);
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+.lp-medical__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.lp-medical__list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: rgba(255,255,255,.8);
+  font-size: 0.9rem;
+}
+
+.lp-medical__list li::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  flex-shrink: 0;
+  margin-top: 7px;
+}
+
+.lp-trust {
+  padding: 60px 0;
+  background: var(--ivory);
+  text-align: center;
+}
+
+.lp-trust__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 40px;
+}
+
+.lp-trust__item strong {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  color: var(--navy);
+  margin-bottom: 6px;
+}
+
+.lp-trust__item p {
+  font-size: 0.875rem;
+  color: var(--gray-600);
+}
+
+.lp-form {
+  padding: 80px 0;
+  background: var(--white);
+}
+
+.lp-form__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+.lp-form__info h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  color: var(--navy);
+  margin-bottom: 14px;
+}
+
+.lp-form__info p {
+  color: var(--gray-600);
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+.lp-form__details {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.lp-form__detail {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.9rem;
+  color: var(--gray-600);
+}
+
+.lp-form__detail svg {
+  width: 18px;
+  height: 18px;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+
+.lp-form__detail a { color: var(--navy); text-decoration: none; font-weight: 500; }
+
+.lp-form-card {
+  background: var(--ivory);
+  border-radius: var(--radius-lg);
+  padding: 40px 36px;
+}
+
+.lp-form-card h3 {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  color: var(--navy);
+  margin-bottom: 24px;
+}
+
+.lp-footer {
+  background: var(--navy);
+  padding: 32px 0;
+  text-align: center;
+}
+
+.lp-footer p {
+  color: rgba(255,255,255,.5);
+  font-size: 0.85rem;
+}
+
+.lp-footer a { color: rgba(255,255,255,.7); text-decoration: none; }
+
+.lp-section-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.lp-section-header h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  color: var(--navy);
+  margin-bottom: 10px;
+}
+
+.lp-section-header p {
+  color: var(--gray-600);
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.65;
+}
+
+.lp-section-header--light h2 { color: var(--white); }
+.lp-section-header--light p { color: rgba(255,255,255,.6); }
+.lp-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+  .lp-cards__grid { grid-template-columns: 1fr; }
+  .lp-medical__inner { grid-template-columns: 1fr; gap: 40px; }
+  .lp-form__inner { grid-template-columns: 1fr; gap: 40px; }
+  .lp-trust__grid { grid-template-columns: 1fr; gap: 24px; }
+  .lp-compare__table { font-size: 0.8rem; }
+  .lp-compare__table td, .lp-compare__table th { padding: 10px 12px; }
 }

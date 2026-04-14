@@ -5,7 +5,7 @@
       "destination": "/index.html"
     },
     {
-      "source": "/((?!admin|content|images|src|assets|favicon).*)",
+      "source": "/((?!admin|content|images|src|assets|favicon|msp-to-rochester).*)",
       "destination": "/index.html"
     }
   ],

@@ -259,106 +259,79 @@ const FORMSPREE_ENDPOINT = 'https://formspree.io/f/maqlzzpk'
 
 // Per-service follow-up question definitions
 const SERVICE_QUESTIONS = {
-  'Transportation & Airport': {
-    label: 'Transportation & Airport Services',
+  'Airport Transportation (MSP or RST)': {
+    label: 'Airport Transportation Details',
     hasSubTypes: true,
     subTypes: [
       {
         label: 'Airport Pickup / Drop-off',
         fields: [
-          { label: 'Airport', name: 'trans_airport', type: 'select', options: ['RST — Rochester International', 'Signature FBO Rochester (RST)', 'MSP — Minneapolis-Saint Paul', 'Signature FBO Minneapolis (MSP)'] },
-          { label: 'Service Type', name: 'trans_type', type: 'select', options: ['Pickup', 'Drop-off', 'Meet & Assist'] },
+          { label: 'Airport', name: 'trans_airport', type: 'select', options: ['MSP — Minneapolis-Saint Paul', 'RST — Rochester International'] },
+          { label: 'Service Type', name: 'trans_type', type: 'select', options: ['Pickup (arriving)', 'Drop-off (departing)', 'Both'] },
           { label: 'No. of Passengers', name: 'trans_passengers', type: 'number' },
           { label: 'No. of Bags', name: 'trans_bags', type: 'number' },
           { label: 'Vehicle Preference', name: 'trans_vehicle', type: 'select', options: ['Sedan', 'SUV', 'Van', 'Wheelchair Accessible'] },
-          { label: 'Date & Time', name: 'trans_datetime', type: 'datetime-local' },
+          { label: 'Arrival Date & Time', name: 'trans_datetime', type: 'datetime-local' },
         ]
       },
       {
-        label: 'Daily Service (10 hrs/day)',
+        label: 'Round Trip (arrive + depart)',
         fields: [
-          { label: 'Number of Days', name: 'daily_days', type: 'number' },
-          { label: 'Vehicle Preference', name: 'daily_vehicle', type: 'select', options: ['Sedan', 'SUV', 'Van', 'Wheelchair Accessible'] },
-          { label: 'Start Date', name: 'daily_start', type: 'date' },
-        ]
-      },
-      {
-        label: 'Hourly Service (min. 2 hrs)',
-        fields: [
-          { label: 'Number of Hours', name: 'hourly_hrs', type: 'number' },
-          { label: 'Vehicle Preference', name: 'hourly_vehicle', type: 'select', options: ['Sedan', 'SUV', 'Van', 'Wheelchair Accessible'] },
-          { label: 'Start Date & Time', name: 'hourly_datetime', type: 'datetime-local' },
-        ]
-      },
-      {
-        label: 'Daily Hospital / Clinic Rides',
-        fields: [
-          { label: 'Pickup Date & Time', name: 'hosp_datetime', type: 'datetime-local' },
-          { label: 'Pickup Address', name: 'hosp_from', type: 'text', placeholder: 'Hotel name or address' },
-          { label: 'Drop-off Address', name: 'hosp_to', type: 'text', placeholder: 'Clinic or facility address' },
-          { label: 'Vehicle Preference', name: 'hosp_vehicle', type: 'select', options: ['Sedan', 'SUV', 'Van', 'Wheelchair Accessible'] },
+          { label: 'Airport', name: 'rt_airport', type: 'select', options: ['MSP — Minneapolis-Saint Paul', 'RST — Rochester International'] },
+          { label: 'Arrival Date & Time', name: 'rt_arrive', type: 'datetime-local' },
+          { label: 'Departure Date & Time', name: 'rt_depart', type: 'datetime-local' },
+          { label: 'No. of Passengers', name: 'rt_passengers', type: 'number' },
+          { label: 'Vehicle Preference', name: 'rt_vehicle', type: 'select', options: ['Sedan', 'SUV', 'Van', 'Wheelchair Accessible'] },
         ]
       },
     ]
   },
-  'Lodging & Move-In Support': {
-    label: 'Lodging & Move-In Support',
+  'Daily Rides to Appointments': {
+    label: 'Daily Appointment Transportation',
+    fields: [
+      { label: 'Stay Start Date', name: 'daily_start', type: 'date' },
+      { label: 'Number of Days', name: 'daily_days', type: 'number' },
+      { label: 'Vehicle Preference', name: 'daily_vehicle', type: 'select', options: ['Sedan', 'SUV', 'Van', 'Wheelchair Accessible'] },
+      { label: 'Pickup Address / Hotel', name: 'daily_from', type: 'text', placeholder: 'Hotel name or address' },
+      { label: 'Destination (clinic/facility)', name: 'daily_to', type: 'text', placeholder: 'Clinic or facility name' },
+    ]
+  },
+  'Accommodation Coordination': {
+    label: 'Accommodation Preferences',
     fields: [
       { label: 'Arrival Date', name: 'lodge_arrival', type: 'date' },
       { label: 'Duration of Stay', name: 'lodge_duration', type: 'select', options: ['1–3 days', '4–7 days', '1–2 weeks', '3–4 weeks', '1–3 months', '3+ months'] },
       { label: 'Number of Guests', name: 'lodge_guests', type: 'number' },
-      { label: 'Budget Range', name: 'lodge_budget', type: 'select', options: ['Economy ($100–150/night)', 'Standard ($150–250/night)', 'Luxury ($250–500/night)', 'Presidential ($500+/night)'] },
-      { label: 'Special Requirements', name: 'lodge_notes', type: 'textarea', placeholder: 'Accessibility needs, floor preferences, facilities nearby…' },
+      { label: 'Budget Range', name: 'lodge_budget', type: 'select', options: ['Economy ($100–150/night)', 'Standard ($150–250/night)', 'Luxury ($250–500/night)'] },
+      { label: 'Special Requirements', name: 'lodge_notes', type: 'textarea', placeholder: 'Accessibility needs, proximity to specific facilities, kitchen required…' },
     ]
   },
-  'Daily Home-care Support': {
-    label: 'Daily / Weekly Home-care Support',
+  'Grocery & Errand Support': {
+    label: 'Grocery & Errand Details',
     fields: [
-      { label: 'Support Needed', name: 'care_type', type: 'checkgroup', options: ['Companion visits', 'Light housekeeping', 'Grocery & pharmacy runs', 'Laundry coordination'] },
-      { label: 'Days Per Week', name: 'care_days', type: 'select', options: ['1–2 days/week', '3–4 days/week', 'Daily', 'As needed'] },
-      { label: 'Duration of Stay', name: 'care_duration', type: 'select', options: ['Less than 1 week', '1–2 weeks', '3–4 weeks', '1–3 months', '3+ months'] },
+      { label: 'Support Needed', name: 'errand_type', type: 'checkgroup', options: ['Grocery shopping', 'Pharmacy runs', 'Laundry coordination', 'Meal preparation assistance', 'Other errands'] },
+      { label: 'Frequency', name: 'errand_freq', type: 'select', options: ['Once', 'A few times per week', 'Daily', 'As needed'] },
+      { label: 'Dietary Restrictions', name: 'errand_diet', type: 'text', placeholder: 'e.g. Halal, gluten-free, no pork…' },
+      { label: 'Additional Notes', name: 'errand_notes', type: 'textarea', placeholder: 'Specific stores, brands, or requirements…' },
     ]
   },
-  'Meals & Dietary Support': {
-    label: 'Meals & Dietary Support',
+  'Full-Stay Concierge Package': {
+    label: 'Full-Stay Concierge Details',
     fields: [
-      { label: 'Dietary Requirements', name: 'meal_diet', type: 'checkgroup', options: ['Halal', 'Kosher', 'Vegetarian', 'Vegan', 'Gluten-free', 'Medical diet'] },
-      { label: 'Number of People', name: 'meal_people', type: 'number' },
-      { label: 'Meals Needed', name: 'meal_which', type: 'checkgroup', options: ['Breakfast', 'Lunch', 'Dinner'] },
-      { label: 'Allergies or Specific Foods', name: 'meal_notes', type: 'textarea', placeholder: 'Describe allergies, cultural preferences, or specific foods…' },
+      { label: 'Arrival Date', name: 'pkg_arrival', type: 'date' },
+      { label: 'Duration of Stay', name: 'pkg_duration', type: 'select', options: ['Less than 1 week', '1–2 weeks', '3–4 weeks', '1–3 months', '3+ months'] },
+      { label: 'Number of People', name: 'pkg_people', type: 'number' },
+      { label: 'Airport', name: 'pkg_airport', type: 'select', options: ['MSP — Minneapolis-Saint Paul', 'RST — Rochester International', 'Driving in'] },
+      { label: 'Services Included', name: 'pkg_services', type: 'checkgroup', options: ['Airport transportation', 'Daily appointment rides', 'Accommodation coordination', 'Grocery & errands', 'Meals support', 'Family/child support'] },
+      { label: 'Tell us more', name: 'pkg_notes', type: 'textarea', placeholder: 'Any specific needs, medical situation, or preferences we should know about…' },
     ]
   },
-  'Family, Child & Pet Support': {
-    label: 'Family, Child & Pet Support',
+  'Other / Not Sure Yet': {
+    label: 'Tell Us What You Need',
     fields: [
-      { label: 'Support Needed', name: 'family_type', type: 'checkgroup', options: ['Childcare coordination', 'Child activity planning', 'Pet boarding', 'Pet walking'] },
-      { label: 'Number of Children', name: 'family_children', type: 'number' },
-      { label: 'Ages of Children', name: 'family_ages', type: 'text', placeholder: 'e.g. 3, 7, 12' },
-      { label: 'Pet Details', name: 'family_pet', type: 'text', placeholder: 'Type and breed, e.g. Golden Retriever' },
-    ]
-  },
-  'City Guide & Leisure': {
-    label: 'City Guide & Leisure Planning',
-    fields: [
-      { label: 'Interests', name: 'leisure_interests', type: 'checkgroup', options: ['Dining & restaurants', 'Shopping', 'Nature & parks', 'Cultural venues', 'Prayer facilities', 'Sports & recreation'] },
-      { label: 'Number of People', name: 'leisure_people', type: 'number' },
-      { label: 'Additional Preferences', name: 'leisure_notes', type: 'textarea', placeholder: 'Mobility considerations, languages, specific interests…' },
-    ]
-  },
-  'Paperwork & Travel Coordination': {
-    label: 'Paperwork & Travel Coordination',
-    fields: [
-      { label: 'Assistance Needed', name: 'paper_type', type: 'checkgroup', options: ['Organizing medical papers', 'Printing & scanning', 'Airline date changes', 'Hotel date changes', 'Appointment scheduling', 'Daily schedule reminders'] },
-      { label: 'Additional Notes', name: 'paper_notes', type: 'textarea', placeholder: 'Describe what you need help coordinating…' },
-    ]
-  },
-  'International White-Glove': {
-    label: 'International White-Glove Services',
-    fields: [
-      { label: 'Country of Origin', name: 'intl_country', type: 'text', placeholder: 'e.g. Saudi Arabia, UAE, Kuwait…' },
-      { label: 'Services Needed', name: 'intl_type', type: 'checkgroup', options: ['Pre-arrival WhatsApp/email planning', 'Airport meet-and-greet', 'SIM card & phone setup', 'Currency exchange assistance', 'US banking guidance', 'Language support', 'Cultural & religious support'] },
-      { label: 'Languages Spoken', name: 'intl_lang', type: 'text', placeholder: 'e.g. Arabic, English, French…' },
-      { label: 'Religious / Cultural Requirements', name: 'intl_religion', type: 'text', placeholder: 'e.g. Halal food, prayer times, dress code…' },
+      { label: 'Describe what you need', name: 'other_notes', type: 'textarea', placeholder: 'Tell us about your trip and we\'ll figure out the best way to help you…' },
+      { label: 'Arrival Date (if known)', name: 'other_arrival', type: 'date' },
+      { label: 'Best way to reach you', name: 'other_contact', type: 'select', options: ['Email', 'Phone call', 'Text / WhatsApp'] },
     ]
   },
 }
